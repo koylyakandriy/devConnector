@@ -22,7 +22,6 @@ const App = () => {
 	
 	// like componentDidMount
 	useEffect(() => {
-		console.log('useEffect');
 		store.dispatch(loadUserAction())
 	}, []);
 	
