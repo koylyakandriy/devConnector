@@ -18,8 +18,8 @@ const ProfileGithub = ({ getGithubReposAction, username, repos }) => {
 					<div key={ repo.id } className='repo bg-white p-1 my-1'>
 						<div>
 							<h4>
-								<Link to={ repo.html_url } target='_blank'
-								      rel='noopener noreferr'>{ repo.name }</Link>
+								<a href={ repo.html_url } target='_blank'
+								   rel='noopener noreferr'>{ repo.name }</a>
 							</h4>
 							<p>{ repo.description }</p>
 						</div>
