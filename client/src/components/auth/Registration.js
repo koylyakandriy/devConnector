@@ -1,31 +1,36 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { setAlertAction } from '../../actions/alert';
-import { registrationAction } from '../../actions/auth';
+import { setAlertAction } from "../../actions/alert";
+import { registrationAction } from "../../actions/auth";
 
-const Registration = ({ setAlertAction, registrationAction, isAuthenticated }) => {
-	const [ formData, setFormData ] = useState({
-		name: '',
-		email: '',
-		password: '',
-		password2: ''
+const Registration = ({
+	setAlertAction,
+	registrationAction,
+	isAuthenticated
+}) => {
+	const [formData, setFormData] = useState({
+		name: "",
+		email: "",
+		password: "",
+		password2: ""
 	});
-	
+
 	const { name, email, password, password2 } = formData;
-	
-	const onChange = e => setFormData({
-		...formData,
-		[e.target.name]: e.target.value
-	});
-	
+
+	const onChange = e =>
+		setFormData({
+			...formData,
+			[e.target.name]: e.target.value
+		});
+
 	const onsubmit = async e => {
 		e.preventDefault();
-		
+
 		if (password !== password2) {
-			setAlertAction('Passwords do not match', 'danger');
+			setAlertAction("Passwords do not match", "danger");
 		} else {
 			registrationAction({
 				name,
@@ -34,37 +39,49 @@ const Registration = ({ setAlertAction, registrationAction, isAuthenticated }) =
 			});
 		}
 	};
-	
+
 	//  Redirect if logged in
 	if (isAuthenticated) {
-		return <Redirect to='/dashboard'/>
+		return <Redirect to="/dashboard" />;
 	}
-	
+
 	return (
 		<Fragment>
 			<h1 className="large text-primary">Sign Up</h1>
-			<p className="lead"><i className="fas fa-user"/> Create Your Account
+			<p className="lead">
+				<i className="fas fa-user" /> Create Your Account
 			</p>
-			<form className="form" onSubmit={ e => onsubmit(e) }>
+			<form className="form" onSubmit={e => onsubmit(e)}>
 				<div className="form-group">
-					<input type="text" placeholder="Name" name="name" value={ name }
-					       onChange={ e => onChange(e) } required/>
+					<input
+						type="text"
+						placeholder="Name"
+						name="name"
+						value={name}
+						onChange={e => onChange(e)}
+						required
+					/>
 				</div>
 				<div className="form-group">
-					<input type="email" placeholder="Email Address" name="email"
-					       value={ email }
-					       onChange={ e => onChange(e) }/>
-					<small className="form-text"
-					>This site uses Gravatar so if you want a profile image, use a
-						Gravatar email</small
-					>
+					<input
+						type="email"
+						placeholder="Email Address"
+						name="email"
+						value={email}
+						onChange={e => onChange(e)}
+					/>
+					<small className="form-text">
+						This site uses Gravatar so if you want a profile image, use a
+						Gravatar email
+					</small>
 				</div>
 				<div className="form-group">
 					<input
 						type="password"
 						placeholder="Password"
-						name="password" value={ password }
-						onChange={ e => onChange(e) }
+						name="password"
+						value={password}
+						onChange={e => onChange(e)}
 						minLength="6"
 					/>
 				</div>
@@ -72,12 +89,13 @@ const Registration = ({ setAlertAction, registrationAction, isAuthenticated }) =
 					<input
 						type="password"
 						placeholder="Confirm Password"
-						name="password2" value={ password2 }
-						onChange={ e => onChange(e) }
+						name="password2"
+						value={password2}
+						onChange={e => onChange(e)}
 						minLength="6"
 					/>
 				</div>
-				<input type="submit" className="btn btn-primary" value="Register"/>
+				<input type="submit" className="btn btn-primary" value="Register" />
 			</form>
 			<p className="my-1">
 				Already have an account? <Link to="/login">Sign In</Link>
@@ -89,14 +107,17 @@ const Registration = ({ setAlertAction, registrationAction, isAuthenticated }) =
 Registration.propTypes = {
 	setAlertAction: PropTypes.func.isRequired,
 	registrationAction: PropTypes.func.isRequired,
-	isAuthenticated: PropTypes.bool,
+	isAuthenticated: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
 	isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, {
-	setAlertAction,
-	registrationAction
-})(Registration);
+export default connect(
+	mapStateToProps,
+	{
+		setAlertAction,
+		registrationAction
+	}
+)(Registration);
