@@ -52,14 +52,6 @@ const EditProfile = ({
 	}, [
 		loading,
 		getCurrentProfileAction,
-		profile.company,
-		profile.website,
-		profile.location,
-		profile.status,
-		profile.skills,
-		profile.githubusername,
-		profile.bio,
-		profile.social
 	]);
 
 	const {

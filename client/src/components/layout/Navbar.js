@@ -21,13 +21,11 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logoutAction }) => {
 				</Link>
 			</li>
 			<li>
-				<Link to="#!" onClick={ logoutAction }>
+				<Link to="/" onClick={ logoutAction }>
 					<i className="fas fa-sign-out-alt"/>{ ' ' }
 					<span className="hide-sm">Logout</span>
 				</Link>
 			</li>
-			{/*<li><Link to="/registration">Registration</Link></li>*/ }
-			{/*<li><Link to="/login">Login</Link></li>*/ }
 		</ul>
 	);
 	
