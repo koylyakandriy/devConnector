@@ -12,4 +12,4 @@
 - npm install
 - npm run dev
 
-## or just follow this [link](https://lit-headland-30440.herokuapp.com/)
+## or just follow this link[DevConnector](https://lit-headland-30440.herokuapp.com/)
